@@ -1,0 +1,27 @@
+#
+#
+#
+# Based on https://github.com/TheBoatyMcBoatFace/markdown-toc
+name: Generate Table of Contents
+
+on:
+  push:
+    branches:
+      - main
+  # workflow_dispatch:
+
+jobs:
+  build:
+    name: Index Repo & Add Table of Contents
+    runs-on: ubuntu-latest
+    steps:
+      - uses: theboatymcboatface/markdown-toc@latest
+        with:
+          content-path: "."
+          document-path: "README.md"
+          filter: '\(\(.*\)\.[^ignore\|.DS_Store].*\)'
+        continue-on-error: true
+## What the Vars Mean
+#  content-path:  Path of the documents to be listed in catalog.
+#  document-path:  Path of the catalog document.
+#  filter:  Filename Regex filter
